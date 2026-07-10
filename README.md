@@ -118,3 +118,66 @@ Please provide:
 - Instructions for setup, database seeding, and running locally.
 - Instructions for running with Docker Compose.
 
+## Local Development
+
+This repository is a Yarn/Lerna monorepo with two workspaces:
+
+- `presight-client` in `client/`
+- `presight-server` in `server/`
+
+The server exposes the API on port `3000` by default. The Vite client runs on its
+own development port and proxies `/api` requests to the server.
+
+### Install
+
+```bash
+yarn install
+```
+
+### Seed the database
+
+```bash
+yarn seed
+```
+
+By default the server stores SQLite data in `server/data/users.db`. Set
+`DATABASE_PATH` to use a different database file, for example the Docker setup
+uses `/app/data/users.sqlite`.
+
+### Run in development
+
+```bash
+yarn dev
+```
+
+This runs the client and server development scripts in parallel through Lerna.
+
+### Build and run locally
+
+```bash
+yarn build
+yarn seed
+yarn start
+```
+
+`yarn start` starts the server workspace. When `client/dist` exists, the server
+serves both the API and the built React app from the same process.
+
+## Docker Compose
+
+Build, seed, and run the full application locally:
+
+```bash
+docker compose up --build
+```
+
+The app is exposed on <http://localhost:3000>. Compose mounts `./data` to
+`/app/data` so the generated SQLite database persists between container
+restarts.1
+
+Useful commands:
+
+```bash
+docker compose down
+docker compose up --build
+```

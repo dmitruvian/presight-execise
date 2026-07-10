@@ -1,6 +1,8 @@
 {
   "name": "presight-execise",
   "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@1.22.22",
   "repository": "",
   "author": "",
   "license": "MIT",
@@ -9,7 +11,11 @@
     "server"
   ],
   "scripts": {
-    "start": "lerna run start"
+    "dev": "lerna run dev --parallel --stream",
+    "start": "yarn workspace presight-server start",
+    "start:workspaces": "lerna run start --parallel --stream",
+    "build": "lerna run build --stream",
+    "seed": "lerna run seed --scope presight-server --stream"
   },
   "devDependencies": {
     "lerna": "~8.2.1"

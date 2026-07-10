@@ -12,6 +12,7 @@ node_modules/
 dist/
 build/
 scripts/
+data/
 
 # misc
 .DS_Store
@@ -21,6 +22,12 @@ scripts/
 .env.test.local
 .env.production.local
 
+# server generated data
+server/data/*.db
+server/data/*.db-*
+server/data/*.sqlite
+server/data/*.sqlite-*
+
 link.sh
 start.sh
 npm-debug.log*
@@ -29,3 +36,5 @@ yarn-error.log*
 
 .parcel-cache
 .idea/
+.agents
+.playwright-cli/
